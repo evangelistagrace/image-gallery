@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .gallery {
+    max-width: 80%;
+   
+    img {
+      width: 30%;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    
+    .lightbox{
+      background: rgba(0,0,0,.8);
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 99999;
+      // display: flex;
+      display: none;
+      justify-content: center;
+      align-content: center;
+      flex-wrap: wrap;
+      
+      img {
+        width: 400px;
+        height: 400px;
+        padding: 5px;
+        background: #000;
+        border: 1px solid white;
+      }
+    }
+  }
+  
