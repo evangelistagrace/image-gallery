@@ -1,0 +1,9 @@
+- Like/unlike pictures
+- Get rid of duplicates
+- Display liked images in a favorites page
+- Add lightbox in favorites page
+- Add registration/login 
+- Improve look of website
+
+BONUS:
+- Add carousel of favorited images
