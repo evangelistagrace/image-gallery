@@ -1,3 +1,7 @@
+<?php
+    require 'like-process.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +11,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Image Gallery</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- bootstrap -->
     
 </head>
 
@@ -24,76 +27,58 @@
     
     <div class="gallery">
         <div class="lightbox"></div>
-        <div class="col-4">
-            <div class="img-container">
-                <img src="https://picsum.photos/200?mountain" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
+        <div class="container">
 
-            <div class="img-container">
-                <img src="https://picsum.photos/200?valley" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-            <div class="img-container">
-                <img src="https://picsum.photos/200?dog" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="col-4">
-            <div class="img-container">
-                <img src="https://picsum.photos/200?sunset" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-            <div class="img-container">
-                <img src="https://picsum.photos/200?beach" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-            <div class="img-container">
-                <img src="https://picsum.photos/200?bear" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-4">
-            <div class="img-container">
-                <img src="https://picsum.photos/200?plant" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-            <div class="img-container">
-                <img src="https://picsum.photos/200?cat" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
-
-            <div class="img-container">
-                <img src="https://picsum.photos/200?city" alt="">
-                <div class="overlay">
-                    <a href="#"><i class="fas fa-heart"></i></a>
-                </div>
-            </div>
         </div>
     </div>
+
+    <script>
+        const numItemsToGenerate = 12;
+        const numImagesAvailable = 280;
+        const imgWidth = 200;
+        const imgHeight = 200;
+        const collectionID = 2489501;
+        const $gallery = document.querySelector('.container');
+
+        function renderGalleryItem(randomNumber){
+            var src = `https://source.unsplash.com/collection/${collectionID}/${imgWidth}x${imgHeight}/?sig=${randomNumber}`;
+            fetch(src)
+            .then((response) => {
+                let imgContainer = document.createElement('div');
+                imgContainer.classList.add('img-container');
+                let img = document.createElement('img');
+                img.src = `${response.url}`;
+                let overlay = document.createElement('div');
+                overlay.classList.add('overlay');
+                let link = document.createElement('a');
+                link.classList.add('like-btn');
+                link.onclick = function(e) {
+                    const btn = e.target.parentElement;
+                    btn.liked = 1;
+                    if(btn.liked == 1){
+                        imageURL = btn.parentElement.previousElementSibling.src;
+                        window.location.href = `like-process.php?like=true&img-url=${imageURL}`;
+                        // console.log(btn.firstChild.className); //like button
+                    }
+                };
+                let likeBtn = document.createElement('i');
+                likeBtn.classList.add('far');
+                likeBtn.classList.add('fa-heart');
+                link.appendChild(likeBtn);
+                overlay.appendChild(link);
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(overlay);
+                $gallery.appendChild(imgContainer);
+
+            })
+        }
+
+        for(let i=0;i<numItemsToGenerate;i++){
+            let randomImageIndex = Math.floor(Math.random() * numImagesAvailable);
+            renderGalleryItem(randomImageIndex);
+        };
+
+    </script>
 
     <script src="https://kit.fontawesome.com/a256fe27cf.js" crossorigin="anonymous"></script>
 </body>
