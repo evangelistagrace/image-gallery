@@ -1,5 +1,6 @@
 - Like/unlike pictures
 - Get rid of duplicates
+- Add reload function
 - Display liked images in a favorites page
 - Add lightbox in favorites page
 - Add registration/login 
@@ -7,3 +8,4 @@
 
 BONUS:
 - Add carousel of favorited images
+- Add pagination

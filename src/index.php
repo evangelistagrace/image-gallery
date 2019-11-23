@@ -28,7 +28,14 @@
     <div class="gallery">
         <div class="lightbox"></div>
         <div class="container">
+            <!-- <div class="img-container">
+                <img src="https://picsum.photos/200?mountain" alt="">
+                <div class="overlay">
+                    <a class="like-btn" ><i class="far fa-heart"></i></i></a>
+                </div>
+            </div> -->
 
+            
         </div>
     </div>
 
